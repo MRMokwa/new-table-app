@@ -59,7 +59,12 @@ export class DataViewComponent implements OnInit {
   }
 
   onPage(event: PageEvent) {
-    this.stateService.changePagination(event);
+    const paginacao = <Paginacao>{
+      pageIndex: event.pageIndex,
+      pageSize: event.pageSize,
+    };
+
+    this.stateService.changePagination(paginacao);
   }
 
   onFilter(event: any) {

@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 
-import { Subject, BehaviorSubject, Observable } from 'rxjs';
-import { switchMap, tap, map, finalize, merge } from 'rxjs/operators';
+import { Subject, BehaviorSubject, Observable, merge } from 'rxjs';
+import { switchMap, tap, map, finalize } from 'rxjs/operators';
 
 @Injectable()
 export class DataViewService {
   private length = new Subject<number>();
   private pageIndex = new Subject<number>();
   private loading = new BehaviorSubject<boolean>(true);
-  private params = new BehaviorSubject<Parametros>(null);
+  private params = new BehaviorSubject<Parametros>({
+    pagination: { pageIndex: 0, pageSize: 10 },
+  });
   private refresh = new Subject<void>();
   private pageSize = new BehaviorSubject<number>(10);
 
@@ -24,15 +26,12 @@ export class DataViewService {
   getData<T>(
     request: (params: Parametros) => Observable<HttpResponse<T>>
   ): Observable<T[]> {
-    const defaultPagination: Paginacao = {
-      pageSize: this.pageSize.value, //TODO: Deve usar a do servico de config
-      pageIndex: 0,
-    };
+    const stream$ = merge(this.params$, this.refresh$).pipe(
+      map(() => this.params.value)
+    );
 
-    return this.params$.pipe(
-      merge(this.refresh$),
+    return stream$.pipe(
       tap(() => this.loading.next(true)),
-      map(() => <Parametros>{ ...this.params.value, pagination: this.params.value?.pagination || defaultPagination }),
       switchMap((params) =>
         request(params).pipe(finalize(() => this.loading.next(false)))
       ),

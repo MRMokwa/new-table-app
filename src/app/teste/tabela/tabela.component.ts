@@ -22,7 +22,7 @@ export class TabelaComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.data$ = this.dataviewService.getData<Person>((params: Parametros) =>
+    this.data$ = this.dataviewService.getData((params: Parametros) =>
       this.testeService.getAll(params)
     );
   }
