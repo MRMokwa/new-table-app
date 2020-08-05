@@ -111,7 +111,7 @@ export const PERSON_DATA: Person[] = [
   },
   {
     id: 12,
-    age: 40,
+    age: 41,
     name: {
       first: 'Buckley',
       last: 'Price',
@@ -121,7 +121,7 @@ export const PERSON_DATA: Person[] = [
   },
   {
     id: 13,
-    age: 40,
+    age: 58,
     name: {
       first: 'Alta',
       last: 'Castaneda',
@@ -491,7 +491,7 @@ export const PERSON_DATA: Person[] = [
   },
   {
     id: 50,
-    age: 40,
+    age: 47,
     name: {
       first: 'Morrison',
       last: 'Quinn',
