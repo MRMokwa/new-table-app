@@ -1,0 +1,41 @@
+<table mat-table [dataSource]="data$ | async" matSort (matSortChange)="sortData($event)">
+
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+    <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="first">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header="first-name">Nome</th>
+    <td mat-cell *matCellDef="let element">{{ element.name.first }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="last">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header="last-name">Sobrenome</th>
+    <td mat-cell *matCellDef="let element">{{ element.name.last }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="age">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Idade</th>
+    <td mat-cell *matCellDef="let element" [ngStyle]="{ color: setColor(element.age) }">
+      <span class="idade">{{ element.age }}</span>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="company">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Empresa</th>
+    <td mat-cell *matCellDef="let element">{{ element.company }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="email">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+    <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columns"></tr>
+  <tr mat-row *matRowDef="let row; columns: columns"></tr>
+
+  <tr class="mat-row" *matNoDataRow>
+    <td class="mat-cell" [attr.colspan]="columns.length + 1"> Nenhuma pessoa encontrada </td>
+  </tr>
+</table>

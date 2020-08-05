@@ -1,0 +1,48 @@
+<mat-drawer-container>
+  <mat-drawer mode="side" [opened]="opened" position="end" disableClose>
+    <mat-toolbar>
+      <h3>Filter</h3>
+      <div fxFlex></div>
+      <button mat-icon-button matTooltip="Fechar" (click)="opened = false">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-toolbar>
+
+    <mat-divider></mat-divider>
+
+    <div id="filter-container">
+      <ng-template appFilter></ng-template>
+    </div>
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <mat-toolbar>
+      <h3>{{ title }}</h3>
+      <div fxFlex></div>
+      <button mat-icon-button matTooltip="Filtro" (click)="opened = !opened">
+        <mat-icon>tune</mat-icon>
+      </button>
+    </mat-toolbar>
+
+    <mat-divider></mat-divider>
+
+    <div id="table-container">
+
+      <ng-container *ngIf="loading$ | async">
+        <div id="spinner-container" fxLayoutAlign="center center">
+          <mat-spinner></mat-spinner>
+        </div>
+      </ng-container>
+
+      <div id="table">
+        <ng-template appTable></ng-template>
+      </div>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <mat-paginator [length]="length$ | async" [pageSize]="pageSize$ | async" [pageIndex]="pageIndex$ | async"
+      (page)="onPage($event)">
+    </mat-paginator>
+  </mat-drawer-content>
+</mat-drawer-container>

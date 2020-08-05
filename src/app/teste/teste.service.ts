@@ -1,0 +1,76 @@
+import { Injectable } from '@angular/core';
+
+import { of, Observable } from 'rxjs';
+import { delay, map } from 'rxjs/operators';
+
+import { PERSON_DATA } from './teste.data';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class TesteService {
+  constructor() {}
+
+  getAll(params?: Parametros): Observable<HttpResponse<Person>> {
+    // Sort
+
+    let sortedData = JSON.parse(JSON.stringify(PERSON_DATA)) as Person[];
+
+    switch (params?.sort?.active) {
+      case 'id':
+        sortedData.sort((a, b) => a.id - b.id);
+        break;
+
+      case 'first-name':
+        sortedData.sort((a, b) => (a.name.first > b.name.first ? 1 : -1));
+        break;
+
+      case 'last-name':
+        sortedData.sort((a, b) => (a.name.last > b.name.last ? 1 : -1));
+        break;
+
+      case 'age':
+        sortedData.sort((a, b) => a.age - b.age);
+        break;
+
+      case 'company':
+        sortedData.sort((a, b) => (a.company > b.company ? 1 : -1));
+        break;
+
+      case 'email':
+        sortedData.sort((a, b) => (a.email > b.email ? 1 : -1));
+        break;
+
+      default:
+        break;
+    }
+
+    if (params?.sort?.direction === 'desc') {
+      sortedData.reverse();
+    }
+
+    // Filter
+
+    let filteredData = sortedData;
+
+    if (params?.filter?.idadeMax) {
+      filteredData = filteredData.filter(
+        (p) => p.age <= params.filter.idadeMax
+      );
+    }
+
+    // Pagination
+
+    const pageIndex = params?.pagination?.pageIndex || 0;
+    const pageSize = params?.pagination?.pageSize || 13;
+
+    const start = pageIndex * pageSize;
+    const end = start + pageSize;
+
+    return of(filteredData).pipe(
+      delay(1000),
+      map((data: any[]) => data.slice(start, end)),
+      map((data) => ({ data, length: filteredData.length }))
+    );
+  }
+}
