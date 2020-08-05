@@ -4,7 +4,7 @@ interface HttpResponse<T> {
 }
 
 interface Parametros {
-  pagination?: Paginacao;
+  pagination: Paginacao;
   filter?: Filtro;
   sort?: Ordenacao;
   search?: string;

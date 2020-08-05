@@ -44,7 +44,7 @@ export class DataViewComponent implements OnInit {
     this.createComponent(this.table, this.tableHost.viewContainerRef);
     this.createComponent(this.filter, this.filterHost.viewContainerRef);
 
-    this.pageSize$ = of(13);
+    this.pageSize$ = this.stateService.pageSize$;
     this.length$ = this.stateService.length$;
     this.pageIndex$ = this.stateService.pageIndex$;
     this.loading$ = this.stateService.loading$;
@@ -64,5 +64,9 @@ export class DataViewComponent implements OnInit {
 
   onFilter(event: any) {
     this.stateService.changeFilter(event);
+  }
+
+  refresh() {
+    this.stateService.refreshData();
   }
 }

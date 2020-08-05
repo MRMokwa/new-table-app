@@ -19,13 +19,17 @@
     <mat-toolbar>
 
       <ng-container *ngIf="!pesquisando">
-        {{ title }}
+        <span>{{ title }}</span>
         <div fxFlex></div>
       </ng-container>
 
       <app-search fxFlex (openedChange)="pesquisando = $event"></app-search>
 
       <ng-container *ngIf="!pesquisando">
+        <button mat-icon-button matTooltip="Atualizar" (click)="refresh()">
+          <mat-icon>refresh</mat-icon>
+        </button>
+
         <button mat-icon-button matTooltip="Filtro" (click)="opened = !opened">
           <mat-icon>tune</mat-icon>
         </button>

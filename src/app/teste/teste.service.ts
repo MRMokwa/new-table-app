@@ -73,7 +73,7 @@ export class TesteService {
 
     // Pagination
     const pageIndex = params?.pagination?.pageIndex || 0;
-    const pageSize = params?.pagination?.pageSize || 13;
+    const pageSize = params?.pagination?.pageSize || 50;
 
     const start = pageIndex * pageSize;
     const end = start + pageSize;
