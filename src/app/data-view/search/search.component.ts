@@ -11,7 +11,7 @@ import {
 import { FormControl } from '@angular/forms';
 
 import { Subscription } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 import { DataViewService } from '../data-view.service';
 import { SEARCH_ANIMATIONS } from './search.component.animations';
@@ -36,7 +36,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     const search = this.pesquisa.valueChanges
-      .pipe(debounceTime(500))
+      .pipe(debounceTime(500), distinctUntilChanged())
       .subscribe((value) => this.stateService.changeSearch(value));
     this.subs.add(search);
   }
@@ -45,16 +45,22 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.subs.unsubscribe();
   }
 
-  toggle() {
-    this.searchVisible = !this.searchVisible;
-    if (this.searchVisible) this.input.nativeElement.focus();
-    this.openedChange.emit(this.searchVisible);
+  open() {
+    this.searchVisible = true;
+    this.openedChange.emit(true);
+    this.input.nativeElement.focus();
+  }
+
+  close() {
+    this.searchVisible = false;
+    this.openedChange.emit(false);
+    this.pesquisa.setValue(null, { emitEvent: false });
+    this.stateService.changeSearch(null);
   }
 
   clear() {
-    this.searchVisible = false;
+    if (!this.searchVisible) return;
     this.pesquisa.setValue(null, { emitEvent: false });
     this.stateService.changeSearch(null);
-    this.openedChange.emit(false);
   }
 }
