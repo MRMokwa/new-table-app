@@ -1,7 +1,7 @@
 <mat-drawer-container>
   <mat-drawer mode="side" [opened]="opened" position="end" disableClose>
     <mat-toolbar>
-      <h3>Filter</h3>
+      <h3>Filtros</h3>
       <div fxFlex></div>
       <button mat-icon-button matTooltip="Fechar" (click)="opened = false">
         <mat-icon>close</mat-icon>
@@ -17,11 +17,20 @@
 
   <mat-drawer-content>
     <mat-toolbar>
-      <h3>{{ title }}</h3>
-      <div fxFlex></div>
-      <button mat-icon-button matTooltip="Filtro" (click)="opened = !opened">
-        <mat-icon>tune</mat-icon>
-      </button>
+
+      <ng-container *ngIf="!pesquisando">
+        {{ title }}
+        <div fxFlex></div>
+      </ng-container>
+
+      <app-search fxFlex (openedChange)="pesquisando = $event"></app-search>
+
+      <ng-container *ngIf="!pesquisando">
+        <button mat-icon-button matTooltip="Filtro" (click)="opened = !opened">
+          <mat-icon>tune</mat-icon>
+        </button>
+      </ng-container>
+
     </mat-toolbar>
 
     <mat-divider></mat-divider>

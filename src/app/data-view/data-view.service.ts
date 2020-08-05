@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Sort } from '@angular/material/sort';
 
 import { Subject, BehaviorSubject, Observable } from 'rxjs';
 import { switchMap, tap, map, finalize } from 'rxjs/operators';
@@ -42,6 +41,10 @@ export class DataViewService {
     const pagination: Paginacao = { ...current, pageIndex };
     this.params.next({ ...this.params.value, filter, pagination });
     this.pageIndex.next(pageIndex);
+  }
+
+  changeSearch(search: string) {
+    this.params.next({ ...this.params.value, search });
   }
 
   changeSort(value: Ordenacao) {

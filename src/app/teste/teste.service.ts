@@ -12,9 +12,22 @@ export class TesteService {
   constructor() {}
 
   getAll(params?: Parametros): Observable<HttpResponse<Person>> {
-    // Sort
+    // Pesquisa
+    let searchedData = JSON.parse(JSON.stringify(PERSON_DATA)) as Person[];
 
-    let sortedData = JSON.parse(JSON.stringify(PERSON_DATA)) as Person[];
+    if (params?.search) {
+      const search = params.search.toLowerCase();
+      searchedData = searchedData.filter(
+        (pessoa) =>
+          pessoa.email.toLowerCase().includes(search) ||
+          pessoa.name.first.toLowerCase().includes(search) ||
+          pessoa.name.last.toLowerCase().includes(search) ||
+          pessoa.company.toLowerCase().includes(search)
+      );
+    }
+
+    // Sort
+    let sortedData = searchedData;
 
     switch (params?.sort?.active) {
       case 'id':
@@ -50,7 +63,6 @@ export class TesteService {
     }
 
     // Filter
-
     let filteredData = sortedData;
 
     if (params?.filter?.idadeMax) {
@@ -60,7 +72,6 @@ export class TesteService {
     }
 
     // Pagination
-
     const pageIndex = params?.pagination?.pageIndex || 0;
     const pageSize = params?.pagination?.pageSize || 13;
 
@@ -68,7 +79,7 @@ export class TesteService {
     const end = start + pageSize;
 
     return of(filteredData).pipe(
-      delay(1000),
+      delay(300),
       map((data: any[]) => data.slice(start, end)),
       map((data) => ({ data, length: filteredData.length }))
     );

@@ -7,6 +7,7 @@ interface Parametros {
   pagination?: Paginacao;
   filter?: Filtro;
   sort?: Ordenacao;
+  search?: string;
 }
 
 interface Filtro {

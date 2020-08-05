@@ -33,6 +33,7 @@ export class DataViewComponent implements OnInit {
   pageSize$: Observable<number>;
   loading$: Observable<boolean>;
   opened = true;
+  pesquisando = false;
 
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
