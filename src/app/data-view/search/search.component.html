@@ -4,9 +4,10 @@
         <mat-icon>{{ searchVisible ? 'arrow_back' : 'search'}}</mat-icon>
     </button>
 
-    <input placeholder="Pesquisar" #input [formControl]="pesquisa" [@inputState]="searchVisible">
+    <input placeholder="Pesquisar" #input [formControl]="pesquisa" [@inputState]="searchVisible"
+        (keydown.Escape)="clear()">
 
-    <button mat-icon-button matTooltip="Limpar pesquisa" *ngIf="searchVisible" (click)="clear()">
+    <button mat-icon-button matTooltip=" Limpar pesquisa" *ngIf="searchVisible" (click)="clear()">
         <mat-icon>cancel</mat-icon>
     </button>
 </div>
