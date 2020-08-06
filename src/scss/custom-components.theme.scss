@@ -1,7 +1,9 @@
 @import "./mat-toolbar-theme.scss";
 @import "./body-background-theme.scss";
+@import "./app/data-view/table/table.component.theme.scss";
 
 @mixin custom-components-theme($theme) {
   @include custom-mat-toolbar-theme($theme);
+  @include app-table-theme($theme);
   @include body-background-theme($theme);
 }
