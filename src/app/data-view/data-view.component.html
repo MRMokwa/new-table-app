@@ -5,26 +5,7 @@
   </mat-drawer>
 
   <mat-drawer-content>
-    <mat-toolbar>
-
-      <ng-container *ngIf="!pesquisando">
-        <span>{{ titulo }}</span>
-        <div fxFlex></div>
-      </ng-container>
-
-      <app-search fxFlex (openedChange)="pesquisando = $event"></app-search>
-
-      <ng-container *ngIf="!pesquisando">
-        <button mat-icon-button matTooltip="Atualizar" (click)="refresh()">
-          <mat-icon>refresh</mat-icon>
-        </button>
-
-        <button mat-icon-button matTooltip="Filtros" (click)="openFilter()" [disabled]="filterOpened$ | async">
-          <mat-icon>tune</mat-icon>
-        </button>
-      </ng-container>
-
-    </mat-toolbar>
+    <app-toolbar [titulo]="titulo"></app-toolbar>
 
     <mat-divider></mat-divider>
 

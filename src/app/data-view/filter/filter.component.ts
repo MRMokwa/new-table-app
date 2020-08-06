@@ -3,7 +3,7 @@ import { Component, OnInit, Input, Type, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { DataViewRenderService } from '../data-view-render.service';
-import { FilterDirective } from '../filter.directive';
+import { FilterDirective } from './filter.directive';
 import { DataViewService } from '../data-view.service';
 
 @Component({

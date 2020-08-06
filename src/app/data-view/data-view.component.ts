@@ -4,7 +4,6 @@ import { PageEvent } from '@angular/material/paginator';
 import { Observable } from 'rxjs';
 
 import { TableDirective } from './table.directive';
-import { FilterDirective } from './filter.directive';
 import { DataViewService } from './data-view.service';
 import { DataViewRenderService } from './data-view-render.service';
 
@@ -25,7 +24,6 @@ export class DataViewComponent implements OnInit {
   pageSize$: Observable<number>;
   loading$: Observable<boolean>;
   filterOpened$: Observable<boolean>;
-  pesquisando = false;
 
   constructor(
     private stateService: DataViewService,
@@ -49,13 +47,5 @@ export class DataViewComponent implements OnInit {
     };
 
     this.stateService.changePagination(paginacao);
-  }
-
-  refresh() {
-    this.stateService.refreshData();
-  }
-
-  openFilter() {
-    this.stateService.openFilter();
   }
 }
