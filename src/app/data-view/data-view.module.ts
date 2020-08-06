@@ -10,6 +10,7 @@ import { SearchComponent } from './search/search.component';
 import { FilterComponent } from './filter/filter.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { TableComponent } from './table/table.component';
+import { PaginatorComponent } from './paginator/paginator.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { TableComponent } from './table/table.component';
     FilterComponent,
     ToolbarComponent,
     TableComponent,
+    PaginatorComponent,
   ],
   imports: [CommonModule, SharedModule, ReactiveFormsModule],
   exports: [DataViewComponent],

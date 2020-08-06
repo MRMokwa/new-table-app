@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Type } from '@angular/core';
-import { PageEvent } from '@angular/material/paginator';
 
 import { Observable } from 'rxjs';
 
@@ -15,26 +14,11 @@ export class DataViewComponent implements OnInit {
   @Input() table: Type<any>;
   @Input() filter: Type<any>;
 
-  length$: Observable<number>;
-  pageIndex$: Observable<number>;
-  pageSize$: Observable<number>;
   filterOpened$: Observable<boolean>;
 
   constructor(private stateService: DataViewService) {}
 
   ngOnInit(): void {
-    this.pageSize$ = this.stateService.pageSize$;
-    this.length$ = this.stateService.length$;
-    this.pageIndex$ = this.stateService.pageIndex$;
     this.filterOpened$ = this.stateService.filterOpened$;
-  }
-
-  onPage(event: PageEvent) {
-    const paginacao: Paginacao = {
-      pageIndex: event.pageIndex,
-      pageSize: event.pageSize,
-    };
-
-    this.stateService.changePagination(paginacao);
   }
 }

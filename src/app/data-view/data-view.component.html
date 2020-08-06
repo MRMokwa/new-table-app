@@ -6,15 +6,10 @@
 
   <mat-drawer-content>
     <app-toolbar [titulo]="titulo"></app-toolbar>
-
     <mat-divider></mat-divider>
-
     <app-table [table]="table"></app-table>
-
     <mat-divider></mat-divider>
-
-    <mat-paginator [length]="length$ | async" [pageSize]="pageSize$ | async" [pageIndex]="pageIndex$ | async"
-      (page)="onPage($event)">
-    </mat-paginator>
+    <app-paginator></app-paginator>
   </mat-drawer-content>
+
 </mat-drawer-container>
