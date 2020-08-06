@@ -21,7 +21,7 @@ import { DataViewService } from './data-view.service';
   styleUrls: ['./data-view.component.scss'],
 })
 export class DataViewComponent implements OnInit {
-  @Input() title: string;
+  @Input() titulo: string;
   @Input() table: Type<any>;
   @Input() filter: Type<any>;
 
