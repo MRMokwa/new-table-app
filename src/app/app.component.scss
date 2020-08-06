@@ -1,4 +1,7 @@
+$padding: 18px;
+
 :host {
   display: block;
-  padding: 12px;
+  height: calc(100% - #{$padding} * 2);
+  padding: $padding;
 }
