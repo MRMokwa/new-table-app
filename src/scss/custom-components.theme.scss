@@ -1,0 +1,7 @@
+@import "./mat-toolbar-theme.scss";
+@import "./body-background-theme.scss";
+
+@mixin custom-components-theme($theme) {
+  @include custom-mat-toolbar-theme($theme);
+  @include body-background-theme($theme);
+}

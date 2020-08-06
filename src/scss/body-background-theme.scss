@@ -1,0 +1,7 @@
+@mixin body-background-theme($theme) {
+  $background: map-get($theme, background);
+
+  body {
+    background-color: map-get($background, status-bar);
+  }
+}

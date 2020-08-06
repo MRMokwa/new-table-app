@@ -1,0 +1,12 @@
+@mixin custom-mat-toolbar-theme($theme) {
+  $background: map-get($theme, background);
+
+  .mat-toolbar {
+    background-color: map-get($background, card);
+    color: map-get($background, text);
+
+    .mat-icon {
+      color: map-get($background, icon);
+    }
+  }
+}
