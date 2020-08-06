@@ -1,7 +1,16 @@
 :host {
   display: block;
+  height: 100%;
+}
+
+.mat-drawer-container {
+  height: 100%;
 }
 
 .mat-drawer {
   min-width: 300px;
+}
+
+app-table {
+  overflow: auto;
 }

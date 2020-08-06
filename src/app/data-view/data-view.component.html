@@ -4,12 +4,16 @@
     <app-filter [filter]="filter"></app-filter>
   </mat-drawer>
 
-  <mat-drawer-content>
+  <mat-drawer-content fxLayout="column">
+
     <app-toolbar [titulo]="titulo"></app-toolbar>
+
     <mat-divider></mat-divider>
-    <app-table [table]="table"></app-table>
+    <app-table fxFlex [table]="table"></app-table>
     <mat-divider></mat-divider>
+
     <app-paginator></app-paginator>
+
   </mat-drawer-content>
 
 </mat-drawer-container>
