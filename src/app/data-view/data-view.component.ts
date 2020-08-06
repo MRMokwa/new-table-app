@@ -1,11 +1,9 @@
-import { Component, OnInit, Input, ViewChild, Type } from '@angular/core';
+import { Component, OnInit, Input, Type } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 
 import { Observable } from 'rxjs';
 
-import { TableDirective } from './table.directive';
 import { DataViewService } from './data-view.service';
-import { DataViewRenderService } from './data-view-render.service';
 
 @Component({
   selector: 'app-data-view',
@@ -17,26 +15,17 @@ export class DataViewComponent implements OnInit {
   @Input() table: Type<any>;
   @Input() filter: Type<any>;
 
-  @ViewChild(TableDirective, { static: true }) tableHost: TableDirective;
-
   length$: Observable<number>;
   pageIndex$: Observable<number>;
   pageSize$: Observable<number>;
-  loading$: Observable<boolean>;
   filterOpened$: Observable<boolean>;
 
-  constructor(
-    private stateService: DataViewService,
-    private renderService: DataViewRenderService
-  ) {}
+  constructor(private stateService: DataViewService) {}
 
   ngOnInit(): void {
-    this.renderService.create(this.table, this.tableHost.viewContainerRef);
-
     this.pageSize$ = this.stateService.pageSize$;
     this.length$ = this.stateService.length$;
     this.pageIndex$ = this.stateService.pageIndex$;
-    this.loading$ = this.stateService.loading$;
     this.filterOpened$ = this.stateService.filterOpened$;
   }
 
