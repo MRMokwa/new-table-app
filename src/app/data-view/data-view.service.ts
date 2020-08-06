@@ -3,23 +3,27 @@ import { Injectable } from '@angular/core';
 import { Subject, BehaviorSubject, Observable, merge } from 'rxjs';
 import { switchMap, tap, map, finalize } from 'rxjs/operators';
 
+export const PAGE_SIZE_DEFAULT = 10;
+
 @Injectable()
 export class DataViewService {
   private length = new Subject<number>();
   private pageIndex = new Subject<number>();
-  private loading = new BehaviorSubject<boolean>(true);
-  private params = new BehaviorSubject<Parametros>({
-    pagination: { pageIndex: 0, pageSize: 10 },
-  });
+  private loading = new BehaviorSubject(true);
   private refresh = new Subject<void>();
-  private pageSize = new BehaviorSubject<number>(10);
+  private pageSize = new BehaviorSubject<number>(PAGE_SIZE_DEFAULT);
+  private filterOpened = new BehaviorSubject(true);
+  private params = new BehaviorSubject<Parametros>({
+    pagination: { pageIndex: 0, pageSize: PAGE_SIZE_DEFAULT },
+  });
 
-  params$ = this.params.asObservable();
   length$ = this.length.asObservable();
   pageIndex$ = this.pageIndex.asObservable();
   loading$ = this.loading.asObservable();
   refresh$ = this.refresh.asObservable();
   pageSize$ = this.pageSize.asObservable();
+  filterOpened$ = this.filterOpened.asObservable();
+  params$ = this.params.asObservable();
 
   constructor() {}
 
@@ -46,21 +50,17 @@ export class DataViewService {
   }
 
   changeFilter(filter: Filtro) {
-    // Ao aplicar a fitrlo, voltar para primeira pagina
     const pageIndex = 0;
     const current = { ...this.params?.value?.pagination };
     const pagination = { ...current, pageIndex } as Paginacao;
-
     this.params.next({ ...this.params.value, filter, pagination });
     this.pageIndex.next(pageIndex);
   }
 
   changeSearch(search: string) {
-    // Ao aplicar a pesquisa, voltar para primeira pagina
     const pageIndex = 0;
     const current = { ...this.params?.value?.pagination };
     const pagination = { ...current, pageIndex } as Paginacao;
-
     this.params.next({ ...this.params.value, search, pagination });
     this.pageIndex.next(pageIndex);
   }
@@ -76,5 +76,13 @@ export class DataViewService {
 
   refreshData() {
     this.refresh.next();
+  }
+
+  openFilter() {
+    this.filterOpened.next(true);
+  }
+
+  closeFilter() {
+    this.filterOpened.next(false);
   }
 }

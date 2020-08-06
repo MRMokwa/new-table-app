@@ -7,9 +7,10 @@ import { TableDirective } from './table.directive';
 import { FilterDirective } from './filter.directive';
 import { SharedModule } from '../shared/shared.module';
 import { SearchComponent } from './search/search.component';
+import { FilterComponent } from './filter/filter.component';
 
 @NgModule({
-  declarations: [DataViewComponent, TableDirective, FilterDirective, SearchComponent],
+  declarations: [DataViewComponent, TableDirective, FilterDirective, SearchComponent, FilterComponent],
   imports: [CommonModule, SharedModule, ReactiveFormsModule],
   exports: [DataViewComponent],
 })

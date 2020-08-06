@@ -1,19 +1,12 @@
-import {
-  Component,
-  OnInit,
-  Input,
-  ComponentFactoryResolver,
-  ViewChild,
-  Type,
-  ViewContainerRef,
-} from '@angular/core';
+import { Component, OnInit, Input, ViewChild, Type } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { TableDirective } from './table.directive';
 import { FilterDirective } from './filter.directive';
 import { DataViewService } from './data-view.service';
+import { DataViewRenderService } from './data-view-render.service';
 
 @Component({
   selector: 'app-data-view',
@@ -26,40 +19,31 @@ export class DataViewComponent implements OnInit {
   @Input() filter: Type<any>;
 
   @ViewChild(TableDirective, { static: true }) tableHost: TableDirective;
-  @ViewChild(FilterDirective, { static: true }) filterHost: FilterDirective;
 
   length$: Observable<number>;
   pageIndex$: Observable<number>;
   pageSize$: Observable<number>;
   loading$: Observable<boolean>;
-  opened = true;
+  filterOpened$: Observable<boolean>;
   pesquisando = false;
 
   constructor(
-    private componentFactoryResolver: ComponentFactoryResolver,
-    private stateService: DataViewService
+    private stateService: DataViewService,
+    private renderService: DataViewRenderService
   ) {}
 
   ngOnInit(): void {
-    this.createComponent(this.table, this.tableHost.viewContainerRef);
-    this.createComponent(this.filter, this.filterHost.viewContainerRef);
+    this.renderService.create(this.table, this.tableHost.viewContainerRef);
 
     this.pageSize$ = this.stateService.pageSize$;
     this.length$ = this.stateService.length$;
     this.pageIndex$ = this.stateService.pageIndex$;
     this.loading$ = this.stateService.loading$;
-  }
-
-  createComponent(component: Type<any>, viewContainerRef: ViewContainerRef) {
-    viewContainerRef.clear();
-    if (!component) return;
-    viewContainerRef.createComponent(
-      this.componentFactoryResolver.resolveComponentFactory(component)
-    );
+    this.filterOpened$ = this.stateService.filterOpened$;
   }
 
   onPage(event: PageEvent) {
-    const paginacao = <Paginacao>{
+    const paginacao: Paginacao = {
       pageIndex: event.pageIndex,
       pageSize: event.pageSize,
     };
@@ -67,11 +51,11 @@ export class DataViewComponent implements OnInit {
     this.stateService.changePagination(paginacao);
   }
 
-  onFilter(event: any) {
-    this.stateService.changeFilter(event);
-  }
-
   refresh() {
     this.stateService.refreshData();
+  }
+
+  openFilter() {
+    this.stateService.openFilter();
   }
 }
