@@ -79,9 +79,13 @@ export class TesteService {
     const end = start + pageSize;
 
     return of(filteredData).pipe(
-      delay(300),
+      delay(this.getRandomNumber()),
       map((data: any[]) => data.slice(start, end)),
       map((data) => ({ data, length: filteredData.length }))
     );
+  }
+
+  getRandomNumber(max = 2000) {
+    return Math.floor(Math.random() * Math.floor(max));
   }
 }
