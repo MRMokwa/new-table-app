@@ -1,6 +1,6 @@
 <mat-drawer-container>
 
-  <mat-drawer mode="side" [opened]="filterOpened$ | async" position="end" disableClose>
+  <mat-drawer [mode]="filterMode$ | async" [opened]="filterOpened$ | async" position="end" disableClose>
     <app-filter [filter]="filter"></app-filter>
   </mat-drawer>
 

@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ChangeDetectorRef } from '@angular/core';
 
-import { Subject, BehaviorSubject, Observable, merge } from 'rxjs';
-import { switchMap, tap, map } from 'rxjs/operators';
+import { Subject, BehaviorSubject, Observable, merge, throwError } from 'rxjs';
+import { switchMap, tap, map, finalize, catchError } from 'rxjs/operators';
 
 export const PAGE_SIZE_DEFAULT = 10;
 
