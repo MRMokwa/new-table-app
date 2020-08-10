@@ -7,11 +7,22 @@
   <mat-drawer-content fxLayout="column">
 
     <app-toolbar [titulo]="titulo"></app-toolbar>
-
-    <mat-divider></mat-divider>
-    <app-table fxFlex [table]="table"></app-table>
     <mat-divider></mat-divider>
 
+    <div id="table-container" fxFlex>
+
+      <ng-container *ngIf="loading$ | async">
+        <div id="spinner-container" fxLayoutAlign="center center">
+          <mat-spinner></mat-spinner>
+        </div>
+      </ng-container>
+
+      <div id="outro-container">
+        <app-table [table]="table"></app-table>
+      </div>
+    </div>
+
+    <mat-divider></mat-divider>
     <app-paginator></app-paginator>
 
   </mat-drawer-content>

@@ -1,8 +1,5 @@
 import { Component, OnInit, Input, Type, ViewChild } from '@angular/core';
 
-import { Observable } from 'rxjs';
-
-import { DataViewService } from '../data-view.service';
 import { DataViewRenderService } from '../data-view-render.service';
 import { TableDirective } from './table.directive';
 
@@ -16,15 +13,9 @@ export class TableComponent implements OnInit {
 
   @ViewChild(TableDirective, { static: true }) tableHost: TableDirective;
 
-  loading$: Observable<boolean>;
-
-  constructor(
-    private stateService: DataViewService,
-    private renderService: DataViewRenderService
-  ) {}
+  constructor(private renderService: DataViewRenderService) {}
 
   ngOnInit(): void {
     this.renderService.create(this.table, this.tableHost.viewContainerRef);
-    this.loading$ = this.stateService.loading$;
   }
 }

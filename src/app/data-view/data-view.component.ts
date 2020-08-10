@@ -15,10 +15,12 @@ export class DataViewComponent implements OnInit {
   @Input() filter: Type<any>;
 
   filterOpened$: Observable<boolean>;
+  loading$: Observable<boolean>;
 
   constructor(private stateService: DataViewService) {}
 
   ngOnInit(): void {
     this.filterOpened$ = this.stateService.filterOpened$;
+    this.loading$ = this.stateService.loading$;
   }
 }

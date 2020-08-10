@@ -2,22 +2,4 @@
   display: block;
   height: 100%;
   min-height: 198px;
-  position: relative;
-}
-
-#table-container {
-  position: relative;
-}
-
-#table {
-  z-index: 2;
-}
-
-#spinner-container {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1;
 }
