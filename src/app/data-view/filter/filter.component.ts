@@ -28,10 +28,6 @@ export class FilterComponent implements OnInit {
     this.opened$ = this.stateService.filterOpened$;
   }
 
-  onFilter(event: any) {
-    this.stateService.changeFilter(event);
-  }
-
   closeFilter() {
     this.stateService.closeFilter();
   }

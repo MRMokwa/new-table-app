@@ -1,7 +1,7 @@
-import { Injectable, ChangeDetectorRef } from '@angular/core';
+import { Injectable } from '@angular/core';
 
-import { Subject, BehaviorSubject, Observable, merge, throwError } from 'rxjs';
-import { switchMap, tap, map, finalize, catchError } from 'rxjs/operators';
+import { Subject, BehaviorSubject, Observable, merge } from 'rxjs';
+import { switchMap, tap, map } from 'rxjs/operators';
 
 export const PAGE_SIZE_DEFAULT = 10;
 
@@ -25,11 +25,7 @@ export class DataViewService {
   filterOpened$ = this.filterOpened.asObservable();
   params$ = this.params.asObservable();
 
-  constructor(private cdr: ChangeDetectorRef) {
-    this.loading.subscribe((x) => {
-      console.log('loading', x);
-    });
-  }
+  constructor() {}
 
   getData<T>(
     request: (params: Parametros) => Observable<HttpResponse<T>>

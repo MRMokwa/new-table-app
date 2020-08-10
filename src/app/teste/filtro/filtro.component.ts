@@ -24,7 +24,7 @@ export class FiltroComponent implements OnInit, OnDestroy {
     });
 
     const filterChange = this.form.valueChanges.subscribe((filtro) =>
-      this.dataViewState.changeFilter(filtro)
+      this.handleFormValues(filtro)
     );
 
     this.subscription.add(filterChange);
@@ -32,5 +32,15 @@ export class FiltroComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+
+  handleFormValues(values: any) {
+    const filter: any = {};
+
+    if (values.idadeMax != 60) {
+      filter.idadeMax = values.idadeMax;
+    }
+
+    this.dataViewState.changeFilter(Object.keys(filter).length ? filter : null);
   }
 }
