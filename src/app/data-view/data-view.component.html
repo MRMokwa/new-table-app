@@ -9,7 +9,6 @@
     <app-toolbar [titulo]="titulo" [ngClass]="getElevation()"></app-toolbar>
     <mat-divider *ngIf="!margin"></mat-divider>
 
-
     <div id="table-container" fxLayout="column" fxFlex [style.margin-top]="margin" [ngClass]="getElevation()">
       <mat-progress-bar *ngIf="loading$ | async" mode="indeterminate"></mat-progress-bar>
       <app-table fxFlex [table]="table"></app-table>
