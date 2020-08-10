@@ -4,26 +4,18 @@
     <app-filter [filter]="filter"></app-filter>
   </mat-drawer>
 
-  <mat-drawer-content fxLayout="column">
+  <mat-drawer-content fxLayout="column" [style.padding]="margin">
 
-    <app-toolbar [titulo]="titulo"></app-toolbar>
-    <mat-divider></mat-divider>
+    <app-toolbar [titulo]="titulo" [ngClass]="getElevation()"></app-toolbar>
+    <mat-divider *ngIf="!margin"></mat-divider>
 
-    <div id="table-container" fxFlex>
 
-      <ng-container *ngIf="loading$ | async">
-        <div id="spinner-container" fxLayoutAlign="center center">
-          <mat-spinner></mat-spinner>
-        </div>
-      </ng-container>
-
-      <div id="outro-container">
-        <app-table [table]="table"></app-table>
-      </div>
+    <div id="table-container" fxLayout="column" fxFlex [style.margin-top]="margin" [ngClass]="getElevation()">
+      <mat-progress-bar *ngIf="loading$ | async" mode="indeterminate"></mat-progress-bar>
+      <app-table fxFlex [table]="table"></app-table>
+      <mat-divider></mat-divider>
+      <app-paginator></app-paginator>
     </div>
-
-    <mat-divider></mat-divider>
-    <app-paginator></app-paginator>
 
   </mat-drawer-content>
 

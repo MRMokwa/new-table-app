@@ -14,6 +14,8 @@ export class DataViewComponent implements OnInit, OnDestroy {
   @Input() titulo: string;
   @Input() table: Type<any>;
   @Input() filter: Type<any>;
+  @Input() margin: string;
+  @Input() elevation: number = 2;
 
   filterOpened$: Observable<boolean>;
   loading$: Observable<boolean>;
@@ -40,5 +42,9 @@ export class DataViewComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
+  }
+
+  getElevation() {
+    return this.margin ? `mat-elevation-z${this.elevation}` : null;
   }
 }

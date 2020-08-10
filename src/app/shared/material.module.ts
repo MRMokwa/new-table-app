@@ -13,8 +13,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDividerModule } from '@angular/material/divider';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   imports: [CommonModule],
@@ -31,8 +31,8 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatTooltipModule,
     MatButtonModule,
     MatDividerModule,
-    MatProgressSpinnerModule,
     MatBadgeModule,
+    MatProgressBarModule,
   ],
 })
 export class MaterialModule {}
