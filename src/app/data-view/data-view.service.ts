@@ -1,7 +1,7 @@
-import { Injectable, ChangeDetectorRef } from '@angular/core';
+import { Injectable } from '@angular/core';
 
-import { Subject, BehaviorSubject, Observable, merge, throwError } from 'rxjs';
-import { switchMap, tap, map, finalize, catchError } from 'rxjs/operators';
+import { Subject, BehaviorSubject, Observable, merge } from 'rxjs';
+import { switchMap, tap, map } from 'rxjs/operators';
 
 export const PAGE_SIZE_DEFAULT = 10;
 
@@ -12,7 +12,7 @@ export class DataViewService {
   private loading = new BehaviorSubject(true);
   private refresh = new Subject<void>();
   private pageSize = new BehaviorSubject<number>(PAGE_SIZE_DEFAULT);
-  private filterOpened = new BehaviorSubject(false);
+  private filterOpened = new BehaviorSubject(true);
   private params = new BehaviorSubject<Parametros>({
     pagination: { pageIndex: 0, pageSize: PAGE_SIZE_DEFAULT },
   });
@@ -75,6 +75,10 @@ export class DataViewService {
 
   refreshData() {
     this.refresh.next();
+  }
+
+  toggleFilter() {
+    this.filterOpened.next(!this.filterOpened.value);
   }
 
   openFilter() {

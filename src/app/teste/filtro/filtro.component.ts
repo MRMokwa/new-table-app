@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
-import { DataViewService } from 'src/app/data-view/data-view.service';
 import { Subscription } from 'rxjs';
+
+import { DataViewService } from 'src/app/data-view/data-view.service';
 
 @Component({
   selector: 'app-filtro',
@@ -22,25 +23,24 @@ export class FiltroComponent implements OnInit, OnDestroy {
     this.form = new FormGroup({
       idadeMax: this.idadeMax,
     });
-
-    const filterChange = this.form.valueChanges.subscribe((filtro) =>
-      this.handleFormValues(filtro)
-    );
-
-    this.subscription.add(filterChange);
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
 
-  handleFormValues(values: any) {
+  submit() {
+    const value = this.handleFormValues(this.form.value);
+    this.dataViewState.changeFilter(value);
+  }
+
+  handleFormValues(values: any): any {
     const filter: any = {};
 
     if (values.idadeMax != 60) {
       filter.idadeMax = values.idadeMax;
     }
 
-    this.dataViewState.changeFilter(Object.keys(filter).length ? filter : null);
+    return Object.keys(filter).length ? filter : null;
   }
 }

@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, Type, OnDestroy } from '@angular/core';
 
-import { Observable, Subscription, BehaviorSubject } from 'rxjs';
+import { Subscription, BehaviorSubject } from 'rxjs';
 
 import { DataViewService } from './data-view.service';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { MediaService } from './media.service';
 
 @Component({
   selector: 'app-data-view',
@@ -17,31 +17,33 @@ export class DataViewComponent implements OnInit, OnDestroy {
   @Input() margin: string;
   @Input() elevation: number = 2;
 
-  filterOpened$: Observable<boolean>;
-  loading$: Observable<boolean>;
-  filterMode$ = new BehaviorSubject<string>('side');
+  filterOpened$ = this.stateService.filterOpened$;
+  loading$ = this.stateService.loading$;
+  filterMode$ = new BehaviorSubject<'over' | 'side'>('side');
   subscriptions = new Subscription();
 
   constructor(
     private stateService: DataViewService,
-    private breakpointObserver: BreakpointObserver
+    private mediaService: MediaService
   ) {}
 
   ngOnInit(): void {
-    this.filterOpened$ = this.stateService.filterOpened$;
-    this.loading$ = this.stateService.loading$;
-
-    const pageResize = this.breakpointObserver
-      .observe([Breakpoints.Handset])
-      .subscribe((state) =>
-        this.filterMode$.next(state.matches ? 'over' : 'side')
-      );
-
-    this.subscriptions.add(pageResize);
+    this.listenMediaChange();
   }
 
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
+  }
+
+  close() {
+    this.stateService.closeFilter();
+  }
+
+  listenMediaChange() {
+    const subs = this.mediaService.media$.subscribe((values) =>
+      this.filterMode$.next(values.includes('lt-md') ? 'over' : 'side')
+    );
+    this.subscriptions.add(subs);
   }
 
   getElevation() {

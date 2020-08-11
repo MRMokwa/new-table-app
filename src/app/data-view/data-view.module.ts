@@ -11,6 +11,7 @@ import { FilterComponent } from './filter/filter.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { TableComponent } from './table/table.component';
 import { PaginatorComponent } from './paginator/paginator.component';
+import { FilterButtonsComponent } from './filter-buttons/filter-buttons.component';
 
 @NgModule({
   declarations: [
@@ -22,8 +23,9 @@ import { PaginatorComponent } from './paginator/paginator.component';
     ToolbarComponent,
     TableComponent,
     PaginatorComponent,
+    FilterButtonsComponent,
   ],
   imports: [CommonModule, SharedModule, ReactiveFormsModule],
-  exports: [DataViewComponent],
+  exports: [DataViewComponent, FilterButtonsComponent],
 })
 export class DataViewModule {}

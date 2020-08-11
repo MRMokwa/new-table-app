@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { TabelaComponent } from './tabela/tabela.component';
 import { SharedModule } from './../shared/shared.module';
@@ -10,7 +10,13 @@ import { DataViewModule } from 'src/app/data-view/data-view.module';
 
 @NgModule({
   declarations: [TabelaComponent, FiltroComponent, ConsultaComponent],
-  imports: [CommonModule, ReactiveFormsModule, SharedModule, DataViewModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    SharedModule,
+    FormsModule,
+    DataViewModule,
+  ],
   exports: [ConsultaComponent],
 })
 export class TesteModule {}

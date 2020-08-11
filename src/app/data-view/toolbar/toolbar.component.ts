@@ -41,7 +41,7 @@ export class ToolbarComponent implements OnInit {
     this.stateService.refreshData();
   }
 
-  openFilter() {
-    this.stateService.openFilter();
+  toggleFilter() {
+    this.stateService.toggleFilter();
   }
 }
