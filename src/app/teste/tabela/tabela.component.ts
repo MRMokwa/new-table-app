@@ -33,7 +33,7 @@ export class TabelaComponent implements OnInit {
 
   setColor(idade: number) {
     const min = 20;
-    const max = 40;
+    const max = 45;
     idade = idade < min ? min : idade > max ? max : idade;
     const value = ((idade - min) * 100) / (max - min) / 100;
     const hue = ((1 - value) * 120).toString(10);
