@@ -1,11 +1,14 @@
 @import "~@angular/material/theming";
-@import "../scss/custom-components.theme.scss";
+@import "../scss/app-theme";
+@import "../scss/app-typography";
 
 @mixin candy-app-theme() {
   $primary: mat-palette($mat-indigo);
   $accent: mat-palette($mat-pink, A200, A100, A400);
   $warn: mat-palette($mat-red);
   $theme: mat-light-theme($primary, $accent, $warn);
+  $typography: get-app-typography();
+
   @include angular-material-theme($theme);
-  @include custom-components-theme($theme);
+  @include app-theme($theme, $typography);
 }

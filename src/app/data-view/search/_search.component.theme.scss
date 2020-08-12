@@ -1,0 +1,7 @@
+@mixin app-search-theme($typography) {
+  app-search {
+    input {
+      @include mat-typography-level-to-styles($typography, title);
+    }
+  }
+}

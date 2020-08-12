@@ -1,8 +1,6 @@
 <mat-toolbar>
 
-    <span *ngIf="!pesquisando" fxFlex>{{ titulo }}</span>
-
-    <app-search fxFlex (openedChange)="pesquisando = $event"></app-search>
+    <app-search fxFlex [placeholder]="titulo"></app-search>
 
     <button mat-icon-button matTooltip="Atualizar" (click)="refresh()">
         <mat-icon>refresh</mat-icon>
@@ -11,7 +9,9 @@
     <ng-container *ngIf="filterBadge$ | async as filterBadge">
         <button mat-icon-button matTooltip="Filtros" (click)="toggleFilter()">
             <mat-icon [matBadge]="filterBadge.numFilters" [matBadgeHidden]="filterBadge.hidden" matBadgeColor="accent"
-                matBadgeSize="small">tune</mat-icon>
+                matBadgeSize="small">
+                tune
+            </mat-icon>
         </button>
     </ng-container>
 

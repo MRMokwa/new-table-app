@@ -1,4 +1,4 @@
-@mixin custom-mat-toolbar-theme($theme) {
+@mixin mat-toolbar-custom-theme($theme, $typography) {
   $background: map-get($theme, background);
 
   .mat-toolbar {
@@ -9,4 +9,6 @@
       color: map-get($background, icon);
     }
   }
+
+  @include mat-toolbar-typography($typography);
 }

@@ -1,0 +1,7 @@
+@mixin mat-drawer-custom-theme($theme) {
+  $background: map-get($theme, background);
+
+  .mat-drawer-container {
+    background-color: map-get($background, status-bar);
+  }
+}

@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { DataViewService } from '../data-view.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+
+import { DataViewService } from '../data-view.service';
 
 interface FilterBadge {
   numFilters: number;
@@ -19,13 +20,9 @@ export class ToolbarComponent implements OnInit {
 
   constructor(private stateService: DataViewService) {}
 
-  filterOpened$: Observable<boolean>;
-  pesquisando = false;
   filterBadge$: Observable<FilterBadge>;
 
   ngOnInit(): void {
-    this.filterOpened$ = this.stateService.filterOpened$;
-
     this.filterBadge$ = this.stateService.params$.pipe(
       map((params) => this.mapFilterBadge(params))
     );

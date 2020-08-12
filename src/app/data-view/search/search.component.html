@@ -1,13 +1,9 @@
-<div fxLayout="row" fxLayoutAlign="end">
+<button mat-icon-button matTooltip="Pesquisar" (click)="focus()">
+    <mat-icon>search</mat-icon>
+</button>
 
-    <button [disabled]="searchVisible" mat-icon-button matTooltip="Pesquisar" (click)="open()">
-        <mat-icon>search</mat-icon>
-    </button>
+<input #input fxFlex [placeholder]="placeholder" [formControl]="pesquisa" (keydown.Escape)="clear()">
 
-    <input placeholder="Pesquisar" #input [formControl]="pesquisa" [@inputState]="searchVisible"
-        (keydown.Escape)="close()">
-
-    <button *ngIf="searchVisible" mat-icon-button matTooltip="Cancelar" (click)="close()">
-        <mat-icon>highlight_off</mat-icon>
-    </button>
-</div>
+<button mat-icon-button matTooltip="Cancelar" (click)="clear()" *ngIf="pesquisa.value">
+    <mat-icon>close</mat-icon>
+</button>

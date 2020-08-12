@@ -1,4 +1,4 @@
-@mixin body-background-theme($theme) {
+@mixin app-body-theme($theme) {
   $background: map-get($theme, background);
 
   body {

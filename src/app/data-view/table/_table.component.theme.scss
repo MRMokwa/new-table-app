@@ -1,0 +1,7 @@
+@mixin app-table-theme($theme) {
+  $background: map-get($theme, background);
+
+  app-table {
+    background-color: map-get($background, app-bar);
+  }
+}

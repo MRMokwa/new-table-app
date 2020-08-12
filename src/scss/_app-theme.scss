@@ -1,0 +1,17 @@
+@import "./_mat-toolbar-custom-theme";
+@import "./_mat-drawer-custom-theme";
+
+@import "../app/data-view/search/search.component.theme";
+@import "../app/data-view/table/table.component.theme";
+@import "./app-body-theme";
+
+@mixin app-theme($theme, $typography) {
+  /* Material */
+  @include mat-toolbar-custom-theme($theme, $typography);
+  @include mat-drawer-custom-theme($theme);
+
+  /* App */
+  @include app-search-theme($typography);
+  @include app-table-theme($theme);
+  @include app-body-theme($theme);
+}
