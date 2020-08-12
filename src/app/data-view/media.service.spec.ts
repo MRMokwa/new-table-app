@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MediaService } from './media.service';
+import { DataViewMediaService } from './data-view-media.service';
 
 describe('MediaService', () => {
-  let service: MediaService;
+  let service: DataViewMediaService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(MediaService);
+    service = TestBed.inject(DataViewMediaService);
   });
 
   it('should be created', () => {

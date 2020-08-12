@@ -6,7 +6,7 @@ import { distinctUntilChanged, map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root',
 })
-export class MediaService {
+export class DataViewMediaService {
   constructor(private mediaObserver: MediaObserver) {}
 
   media$ = this.mediaObserver.asObservable().pipe(

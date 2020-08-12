@@ -3,7 +3,7 @@ import { Component, OnInit, Input, Type, OnDestroy } from '@angular/core';
 import { Subscription, BehaviorSubject } from 'rxjs';
 
 import { DataViewService } from './data-view.service';
-import { MediaService } from './media.service';
+import { DataViewMediaService } from './data-view-media.service';
 
 @Component({
   selector: 'app-data-view',
@@ -24,7 +24,7 @@ export class DataViewComponent implements OnInit, OnDestroy {
 
   constructor(
     private stateService: DataViewService,
-    private mediaService: MediaService
+    private mediaService: DataViewMediaService
   ) {}
 
   ngOnInit(): void {
