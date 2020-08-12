@@ -3,7 +3,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 
 import { Subscription } from 'rxjs';
 
-import { DataViewService } from 'src/app/data-view/data-view.service';
+import { DataViewStateService } from 'src/app/data-view/data-view-state.service';
 
 @Component({
   selector: 'app-filtro',
@@ -15,7 +15,7 @@ export class FiltroComponent implements OnInit, OnDestroy {
   idadeMax: FormControl;
   subscription = new Subscription();
 
-  constructor(private dataViewState: DataViewService) {}
+  constructor(private dataViewState: DataViewStateService) {}
 
   ngOnInit(): void {
     this.idadeMax = new FormControl(60);

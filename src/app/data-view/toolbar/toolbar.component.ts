@@ -3,7 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { DataViewService } from '../data-view.service';
+import { DataViewStateService } from '../data-view-state.service';
 
 interface FilterBadge {
   numFilters: number;
@@ -18,7 +18,7 @@ interface FilterBadge {
 export class ToolbarComponent implements OnInit {
   @Input() titulo: string;
 
-  constructor(private stateService: DataViewService) {}
+  constructor(private stateService: DataViewStateService) {}
 
   filterBadge$: Observable<FilterBadge>;
 

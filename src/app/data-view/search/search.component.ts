@@ -12,7 +12,7 @@ import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
-import { DataViewService } from '../data-view.service';
+import { DataViewStateService } from '../data-view-state.service';
 
 @Component({
   selector: 'app-search',
@@ -28,7 +28,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   pesquisa = new FormControl();
   subscriptions = new Subscription();
 
-  constructor(private stateService: DataViewService) {}
+  constructor(private stateService: DataViewStateService) {}
 
   ngOnInit(): void {
     this.listenToSearch();

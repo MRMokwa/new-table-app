@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { DataViewService } from '../data-view.service';
+import { DataViewStateService } from '../data-view-state.service';
 import { PageEvent } from '@angular/material/paginator';
 
 @Component({
@@ -13,7 +13,7 @@ export class PaginatorComponent implements OnInit {
   pageIndex$: Observable<number>;
   pageSize$: Observable<number>;
 
-  constructor(private stateService: DataViewService) {}
+  constructor(private stateService: DataViewStateService) {}
 
   ngOnInit(): void {
     this.pageSize$ = this.stateService.pageSize$;

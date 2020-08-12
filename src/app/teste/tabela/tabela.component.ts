@@ -4,7 +4,7 @@ import { Sort } from '@angular/material/sort';
 import { Observable } from 'rxjs';
 
 import { TesteService } from '../teste.service';
-import { DataViewService } from 'src/app/data-view/data-view.service';
+import { DataViewStateService } from 'src/app/data-view/data-view-state.service';
 
 @Component({
   selector: 'app-tabela',
@@ -18,17 +18,17 @@ export class TabelaComponent implements OnInit {
 
   constructor(
     private testeService: TesteService,
-    private dataviewService: DataViewService
+    private dataViewStateService: DataViewStateService
   ) {}
 
   ngOnInit() {
-    this.data$ = this.dataviewService.getData((params: Parametros) =>
+    this.data$ = this.dataViewStateService.getData((params: Parametros) =>
       this.testeService.getAll(params)
     );
   }
 
   sortData(sort: Sort) {
-    this.dataviewService.changeSort(sort as Ordenacao);
+    this.dataViewStateService.changeSort(sort as Ordenacao);
   }
 
   setColor(idade: number) {

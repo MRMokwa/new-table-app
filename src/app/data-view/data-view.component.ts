@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Type, OnDestroy } from '@angular/core';
 
 import { Subscription, BehaviorSubject } from 'rxjs';
 
-import { DataViewService } from './data-view.service';
+import { DataViewStateService } from './data-view-state.service';
 import { DataViewMediaService } from './data-view-media.service';
 
 @Component({
@@ -23,7 +23,7 @@ export class DataViewComponent implements OnInit, OnDestroy {
   subscriptions = new Subscription();
 
   constructor(
-    private stateService: DataViewService,
+    private stateService: DataViewStateService,
     private mediaService: DataViewMediaService
   ) {}
 

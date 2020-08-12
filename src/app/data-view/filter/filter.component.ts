@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Type, ViewChild } from '@angular/core';
 
 import { DataViewRenderService } from '../data-view-render.service';
 import { FilterDirective } from './filter.directive';
-import { DataViewService } from '../data-view.service';
+import { DataViewStateService } from '../data-view-state.service';
 
 @Component({
   selector: 'app-filter',
@@ -15,7 +15,7 @@ export class FilterComponent implements OnInit {
   @ViewChild(FilterDirective, { static: true }) filterHost: FilterDirective;
 
   constructor(
-    private stateService: DataViewService,
+    private stateService: DataViewStateService,
     private renderService: DataViewRenderService
   ) {}
 

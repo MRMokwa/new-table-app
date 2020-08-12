@@ -6,7 +6,7 @@ import { switchMap, tap, map } from 'rxjs/operators';
 export const PAGE_SIZE_DEFAULT = 10;
 
 @Injectable()
-export class DataViewService {
+export class DataViewStateService {
   private length = new Subject<number>();
   private pageIndex = new Subject<number>();
   private loading = new BehaviorSubject(true);

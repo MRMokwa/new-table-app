@@ -4,7 +4,7 @@ import { MediaObserver } from '@angular/flex-layout';
 
 import { Subscription } from 'rxjs';
 
-import { DataViewService } from '../data-view.service';
+import { DataViewStateService } from '../data-view-state.service';
 
 @Component({
   selector: 'app-filter-buttons',
@@ -18,7 +18,7 @@ export class FilterButtonsComponent implements OnInit, OnDestroy {
   initialValue: any;
 
   constructor(
-    private dataViewService: DataViewService,
+    private dataViewStateService: DataViewStateService,
     private mediaObserver: MediaObserver
   ) {}
 
@@ -34,7 +34,7 @@ export class FilterButtonsComponent implements OnInit, OnDestroy {
   }
 
   close() {
-    this.dataViewService.closeFilter();
+    this.dataViewStateService.closeFilter();
   }
 
   reset() {
@@ -44,7 +44,7 @@ export class FilterButtonsComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     this.mediaObserver.isActive(['xs', 'sm'])
-      ? this.dataViewService.closeFilter()
+      ? this.dataViewStateService.closeFilter()
       : null;
   }
 }
